@@ -1,0 +1,38 @@
+.tx-ocr { margin: 12px 4px 0; text-align: center; }
+.tx-file { flex-wrap: nowrap; }
+.tx-fname { gap: 8px; min-width: 0; flex-wrap: nowrap; }
+.tx-fname b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tx-fname .faint { white-space: nowrap; }
+.tx-progress { display: grid; gap: 6px; }
+.tx-bar { height: 8px; border-radius: 99px; background: var(--surface-3); overflow: hidden; }
+.tx-bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: inherit; transition: width .15s; }
+.tx-warn { padding: 10px 12px; border-radius: 10px; background: var(--coffee-soft); color: var(--warn); font-size: 13px; }
+.tx-warn b { color: inherit; }
+#stats .stat { padding: 12px 14px; }
+#stats .stat b { font-size: 20px; }
+
+.tx-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 14px; align-items: start; }
+.tx-tools { gap: 8px 14px; }
+.tx-search { flex-wrap: nowrap; gap: 6px; }
+.tx-search .input { min-height: 36px; padding: 7px 12px; }
+#hits { white-space: nowrap; }
+.tx-out { height: 560px; overflow: auto; font-family: var(--font); font-size: 14px; line-height: 1.65; resize: vertical; }
+.tx-out:empty::before { content: "No text found."; color: var(--text-3); }
+.tx-out mark { background: rgba(245, 194, 107, .35); color: inherit; border-radius: 3px; padding: 0 1px; }
+.tx-out mark.cur { background: var(--warn); color: #1d1404; }
+.tx-sep { display: block; color: var(--accent); font-weight: 650; font-size: 12px; letter-spacing: .06em; user-select: none; }
+.tx-none { color: var(--warn); font-style: italic; }
+
+.tx-pages { position: sticky; top: 74px; }
+.tx-tbl { max-height: 560px; overflow: auto; }
+.tx-tbl tbody tr { cursor: pointer; }
+.tx-tbl tbody tr:hover { background: var(--surface-2); }
+.tx-tbl td, .tx-tbl th { padding: 7px 10px; }
+.tx-tbl .chip { padding: 2px 8px; font-size: 11px; }
+
+@media (max-width: 860px) {
+  .tx-layout { grid-template-columns: minmax(0, 1fr); }
+  .tx-pages { position: static; }
+  .tx-out { height: 420px; }
+  .tx-tools .grow { display: none; }
+}

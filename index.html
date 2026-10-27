@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>PDF to Text — Extract Text from a PDF, Free &amp; Private | S3eidat Tools</title>
+<meta name="description" content="Pull the text out of any PDF in your browser: clean lines and paragraphs, page separators, search, per-page word counts, copy or download as .txt or .md. Nothing uploaded.">
+<meta property="og:title" content="PDF to Text — pull the text out of any PDF">
+<meta property="og:description" content="Extract clean text with paragraphs, search it, download .txt or .md. Runs 100% in your browser.">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+<!--s3:seo-->
+<link rel="canonical" href="https://s3eidat.github.io/pdf-to-text/">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d0f12">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="S3eidat Tools">
+<meta property="og:url" content="https://s3eidat.github.io/pdf-to-text/">
+<meta property="og:image" content="https://s3eidat.github.io/pdf-to-text/screenshot.png">
+<meta property="og:image:width" content="1280"><meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF to Text — Pull the text out of any PDF">
+<meta name="twitter:description" content="Pull the text out of any PDF. Free, private and runs 100% in your browser: no sign-up, no uploads.">
+<meta name="twitter:image" content="https://s3eidat.github.io/pdf-to-text/screenshot.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "PDF to Text", "url": "https://s3eidat.github.io/pdf-to-text/", "description": "Pull the text out of any PDF. Free, private and runs 100% in your browser: no sign-up, no uploads.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "image": "https://s3eidat.github.io/pdf-to-text/screenshot.png", "author": {"@type": "Person", "name": "s3eidat", "url": "https://github.com/s3eidat"}}</script>
+<!--/s3:seo-->
+</head>
+<body data-tool="pdf-to-text">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>PDF to Text</h1>
+    <p>Pull the text out of a PDF with its lines and paragraphs rebuilt, search it, and copy or download it. The file never leaves this device.</p>
+  </section>
+
+  <section class="card" id="dropCard">
+    <label class="drop" id="drop">
+      <input type="file" accept=".pdf,application/pdf" hidden>
+      <svg class="i"><use href="#i-upload"/></svg>
+      <b>Drop a PDF here</b>
+      <span>or click to choose one</span>
+    </label>
+    <p class="faint tx-ocr">Works on PDFs that contain real text. Scanned pages are pictures of text and need OCR, which this tool doesn't do; it tells you which pages those are.</p>
+  </section>
+
+  <div id="work" hidden>
+    <section class="card">
+      <div class="row between tx-file">
+        <div class="row tx-fname"><svg class="i"><use href="#i-file"/></svg><b id="fname"></b><span class="faint" id="fmeta"></span></div>
+        <button class="btn ghost small" id="change"><svg class="i"><use href="#i-refresh"/></svg>Another file</button>
+      </div>
+      <div class="tx-progress mt" id="progress" hidden>
+        <div class="tx-bar"><i id="bar"></i></div>
+        <div class="row between"><span class="faint" id="ptext"></span><button class="btn ghost small" id="cancel">Cancel</button></div>
+      </div>
+      <div class="stats mt" id="stats"></div>
+      <div class="tx-warn mt" id="warn" hidden></div>
+    </section>
+
+    <div class="tx-layout mt">
+      <section class="card tx-main">
+        <div class="row tx-tools">
+          <label class="check"><input type="checkbox" id="seps"> Page separators</label>
+          <label class="check"><input type="checkbox" id="reflow"> Join lines into paragraphs</label>
+          <span class="grow"></span>
+          <button class="btn small" id="copy"><svg class="i"><use href="#i-copy"/></svg>Copy all</button>
+          <button class="btn small" id="txt"><svg class="i"><use href="#i-download"/></svg>.txt</button>
+          <button class="btn small" id="md"><svg class="i"><use href="#i-download"/></svg>.md</button>
+        </div>
+        <div class="row tx-search mt">
+          <label class="sr" for="q">Search the text</label>
+          <input class="input grow" id="q" type="search" placeholder="Search the text…" dir="auto" spellcheck="false" autocomplete="off">
+          <span class="chip" id="hits">—</span>
+          <button class="btn icon small" id="hPrev" aria-label="Previous match">↑</button>
+          <button class="btn icon small" id="hNext" aria-label="Next match">↓</button>
+        </div>
+        <div class="out tx-out mt" id="out" tabindex="0" dir="auto" aria-label="Extracted text"></div>
+      </section>
+
+      <section class="card tx-pages">
+        <h2>Pages</h2>
+        <div class="tbl-wrap tx-tbl"><table class="tbl"><thead><tr><th>Page</th><th>Words</th><th>Text</th></tr></thead><tbody id="rows"></tbody></table></div>
+      </section>
+    </div>
+  </div>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>
